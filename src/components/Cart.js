@@ -17,7 +17,7 @@ class Cart extends Component {
 
   calculateTotal() {
     return this.props.cart.reduce((total, item) => {
-      return total + item.quantity * item.price
+      return (total + item.quantity * item.price).toFixed(2)
     }, 0)
   }
 
