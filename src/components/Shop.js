@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import Header from './Header';
+import EditableProductList from './EditableProductList';
 
 class Shop extends Component {
   render() {
     return (
       <div id="app">
-        <h1>Welcome!</h1>
+        <Header />
+        <main>
+          <EditableProductList />
+        </main>
       </div>
     );
   }
