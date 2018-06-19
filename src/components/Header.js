@@ -6,7 +6,10 @@ class Header extends Component {
     return(
       <header>
         <h1>The Shop!</h1>
-        <Cart />
+        <Cart 
+          checkoutCart={this.props.checkoutCart}
+          cart={this.props.cart}
+        />
 
       </header>
     );
