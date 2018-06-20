@@ -39,6 +39,7 @@ class Shop extends Component {
 
     this.addToCart = this.addToCart.bind(this)
     this.checkoutCart = this.checkoutCart.bind(this)
+    this.deleteProduct = this.deleteProduct.bind(this)
   }
 
   componentDidMount() {
@@ -84,6 +85,16 @@ class Shop extends Component {
     this.setState({ cart: [] })
   }
 
+  deleteProduct(id) {
+    this.setState((prevState) => {
+      let newProducts = prevState.products.filter((product) => {
+        return product.id !== id;
+      })
+
+      return { products: newProducts }
+    })
+  }
+
   render() {
     return (
       <div id="app">
@@ -93,7 +104,8 @@ class Shop extends Component {
         />
         <main>
           <EditableProductList
-            handleAddToCart={this.addToCart}
+            addToCart={this.addToCart}
+            deleteProduct={this.deleteProduct}
             products={this.state.products}
           />
         </main>

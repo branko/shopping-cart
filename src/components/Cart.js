@@ -17,8 +17,8 @@ class Cart extends Component {
 
   calculateTotal() {
     return this.props.cart.reduce((total, item) => {
-      return (total + item.quantity * item.price).toFixed(2)
-    }, 0)
+      return (total + item.quantity * item.price)
+    }, 0).toFixed(2)
   }
 
   generateRows() {
@@ -67,7 +67,7 @@ class Cart extends Component {
       <div className="cart">
         <h2>Your Cart</h2>
         { this.generateCart() }
-        <a 
+        <a
            onClick={this.handleCheckout}
            className={`button checkout ${this.props.cart.length === 0 ? 'disabled' : ''}`}>Checkout
         </a>
