@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EditableProduct from "./EditableProduct";
+import ToggleableProductForm from "./ToggleableProductForm";
 
 class EditableProductList extends Component {
   static defaultProps = {
@@ -20,10 +21,15 @@ class EditableProductList extends Component {
     })
 
     return (
-      <div className="product-listing">
-        <h2>Products</h2>
-        {productList}
-      </div>
+      <main>
+        <div className="product-listing">
+          <h2>Products</h2>
+          {productList}
+        </div>
+        <ToggleableProductForm 
+          addProduct={this.props.addProduct}
+        />
+      </main>
     );
   }
 }

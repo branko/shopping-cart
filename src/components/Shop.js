@@ -88,6 +88,23 @@ class Shop extends Component {
     })
   }
 
+  getNextId = () => {
+    return Math.max(...this.state.products.map(product => product.id)) + 1;
+  }
+
+  addProduct = (title, price, quantity) => {
+    let newProduct = {
+      id: this.getNextId(),
+      title,
+      price,
+      quantity,
+    }
+
+    this.setState((prevState) => {
+      return {products: prevState.products.concat(newProduct)}
+    });
+  }
+
   render() {
     return (
       <div id="app">
@@ -95,13 +112,13 @@ class Shop extends Component {
           checkoutCart={this.checkoutCart}
           cart={this.state.cart}
         />
-        <main>
-          <EditableProductList
-            addToCart={this.addToCart}
-            deleteProduct={this.deleteProduct}
-            products={this.state.products}
-          />
-        </main>
+      
+        <EditableProductList
+          addToCart={this.addToCart}
+          deleteProduct={this.deleteProduct}
+          products={this.state.products}
+          addProduct={this.addProduct}
+        />
       </div>
     );
   }
