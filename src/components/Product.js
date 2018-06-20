@@ -1,20 +1,13 @@
 import React, { Component } from 'react';
 
 class Product extends Component {
-  constructor(props) {
-    super(props)
-
-    this.handleAddToCart = this.handleAddToCart.bind(this)
-    this.handleDeleteProduct = this.handleDeleteProduct.bind(this)
-  }
-
-  handleAddToCart(e) {
+  handleAddToCart = (e) => {
     if (this.props.quantity > 0) {
       this.props.addToCart(this.props.id)
     }
   }
 
-  handleDeleteProduct(e) {
+  handleDeleteProduct = (e) => {
     this.props.deleteProduct(this.props.id)
   }
 
