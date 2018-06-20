@@ -30,15 +30,9 @@ let products = [
 ]
 
 class Shop extends Component {
-
-  constructor(props) {
-    super(props)
-
-    this.state = { products: [],
-                  cart: [] }
-
-    this.addToCart = this.addToCart.bind(this)
-    this.checkoutCart = this.checkoutCart.bind(this)
+  state = {
+    products: [],
+    cart: []
   }
 
   componentDidMount() {
@@ -47,7 +41,7 @@ class Shop extends Component {
     }
   }
 
-  addToCart(id) {
+  addToCart = (id) => {
     this.setState(prevState => {
       let newCart;
 
@@ -80,8 +74,18 @@ class Shop extends Component {
     })
   }
 
-  checkoutCart() {
+  checkoutCart = () => {
     this.setState({ cart: [] })
+  }
+
+  deleteProduct = (id) => {
+    this.setState((prevState) => {
+      let newProducts = prevState.products.filter((product) => {
+        return product.id !== id;
+      })
+
+      return { products: newProducts }
+    })
   }
 
   render() {
@@ -93,7 +97,8 @@ class Shop extends Component {
         />
         <main>
           <EditableProductList
-            handleAddToCart={this.addToCart}
+            addToCart={this.addToCart}
+            deleteProduct={this.deleteProduct}
             products={this.state.products}
           />
         </main>
