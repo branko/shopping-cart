@@ -4,26 +4,22 @@ import Enzyme, { shallow, mount } from 'enzyme';
 import renderer from 'react-test-renderer';
 import Adapter from 'enzyme-adapter-react-16';
 
-import Shop from '../components/Shop';
+import Cart from '../components/Cart';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-describe('Shop', () => {
+describe('Cart', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallow(<Shop />);
+    wrapper = shallow(
+      <Cart
+        cart={[]}
+      />
+    )
   })
 
-  it('is an app', () => {
-    expect(
-      wrapper.find('#app').length
-    ).toBe(1)
+  it('is a cart', () => {
+    expect(true).toBe(true)
   })
-
-  it('has a header', () => {
-    expect(
-      wrapper.find('Header').length
-    ).toBe(1)
-  })
-});
+})

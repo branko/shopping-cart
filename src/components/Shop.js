@@ -124,7 +124,7 @@ class Shop extends Component {
           checkoutCart={this.checkoutCart}
           cart={this.state.cart}
         />
-      
+
         <EditableProductList
           addToCart={this.addToCart}
           deleteProduct={this.deleteProduct}
