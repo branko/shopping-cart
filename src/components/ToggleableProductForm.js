@@ -13,7 +13,8 @@ class ToggleableProductForm extends Component {
   generateAddForm = () => {
     if (this.state.isOpen) {
       return (<ProductForm 
-                addProduct={this.props.addProduct}
+                formType="Add"
+                submitAction={this.props.addProduct}
               />)
     } else {
       return (

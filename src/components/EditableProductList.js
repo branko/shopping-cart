@@ -17,6 +17,7 @@ class EditableProductList extends Component {
                 price={p.price}
                 addToCart={this.props.addToCart}
                 deleteProduct={this.props.deleteProduct}
+                editProduct={this.props.editProduct}
               />)
     })
 

@@ -2,12 +2,28 @@ import React, { Component } from 'react';
 import Field from './Field';
 
 class ProductForm extends Component {
+  static defaultProps = {
+    title: '',
+    price: '',
+    quantity: '',
+  }
+
   state = {
     fields: {
       title: '',
       price: '',
       quantity: '',
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      fields: {
+        title: this.props.title,
+        price: this.props.price,
+        quantity: this.props.quantity,
+      }
+    })
   }
 
   onChange = (title, input) => {
@@ -22,14 +38,14 @@ class ProductForm extends Component {
     let price = this.state.fields.price;
     let quantity = this.state.fields.quantity;
     
-    this.props.addProduct(title, price, quantity);
+    this.props.submitAction(title, price, quantity, this.props.id);
     this.setState({fields: {title: '', price: '', quantity: ''}});
   }
 
   render() {
     return (
       <div className='add-form visible'>
-        <h3>Add Product</h3>
+        <h3>{this.props.formType === 'Update' ? "Edit" : "Add"} Product</h3>
         <form>
           <Field name='title'
                  label='Product Name'
@@ -52,7 +68,7 @@ class ProductForm extends Component {
           <div className='actions form-actions'>
             <a className='button'
                onClick={this.submitForm}
-            >Add</a>
+            >{this.props.formType}</a>
             <a className='button'>Cancel</a>
           </div>
         </form>

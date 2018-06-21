@@ -105,6 +105,18 @@ class Shop extends Component {
     });
   }
 
+  editProduct = (title, price, quantity, id) => {
+    let product = this.state.products.find(p => p.id === id)
+
+    let newProduct = Object.assign({}, product, {title, price, quantity})
+
+    this.setState(prevState => {
+      let newProducts = prevState.products.filter(p => p.id !== id).concat(newProduct)
+
+      return { products: newProducts.sort((a, b) => a.id - b.id) }
+    })
+  }
+
   render() {
     return (
       <div id="app">
@@ -118,6 +130,7 @@ class Shop extends Component {
           deleteProduct={this.deleteProduct}
           products={this.state.products}
           addProduct={this.addProduct}
+          editProduct={this.editProduct}
         />
       </div>
     );
