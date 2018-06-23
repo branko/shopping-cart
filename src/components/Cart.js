@@ -16,18 +16,23 @@ class Cart extends Component {
   }
 
   calculateTotal() {
-    return this.props.cart.reduce((total, item) => {
-      return (total + item.quantity * item.price)
+    let { products, cart } = this.props
+
+    return Object.keys(cart).reduce((total, id) => {
+      let cartProduct = cart[id]
+      return (total + cartProduct.quantity * products[id].price)
     }, 0).toFixed(2)
   }
 
   generateRows() {
-    return this.props.cart.map(item => {
+    let { products, cart } = this.props
+
+    return Object.keys(this.props.cart).map((id) => {
       return (
-        <tr>
-          <td>{item.title}</td>
-          <td>{item.quantity}</td>
-          <td>${item.price}</td>
+        <tr key={id}>
+          <td>{products[id].title}</td>
+          <td>{cart[id].quantity}</td>
+          <td>${products[id].price}</td>
         </tr>
         )
     })
@@ -43,14 +48,14 @@ class Cart extends Component {
                 </tr>
                 {this.generateRows()}
                 <tr>
-                  <td className="total" colspan="3">Total: ${this.calculateTotal()}</td>
+                  <td className="total" colSpan="3">Total: ${this.calculateTotal()}</td>
                 </tr>
               </tbody>
             </table>)
   }
 
   generateCart() {
-    if (this.props.cart.length === 0) {
+    if (Object.keys(this.props.cart).length === 0) {
       return (
         <div>
           <p>Your cart is empty</p>

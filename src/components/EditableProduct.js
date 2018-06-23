@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ProductForm from './ProductForm';
-
+import { connect } from 'react-redux'
 
 class EditableProduct extends Component {
   state = {
@@ -23,11 +23,11 @@ class EditableProduct extends Component {
 
   handleSubmit = (title, price, quantity, id) => {
     this.setState({editOpen: false});
-    this.props.editProduct(title, price, quantity, id);
+    this.props.editProduct(id, title, price, quantity)
   }
 
   showEditForm = () => {
-    return (<ProductForm 
+    return (<ProductForm
             formType="Update"
             id={this.props.id}
             title={this.props.title}

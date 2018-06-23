@@ -10,11 +10,16 @@ class ToggleableProductForm extends Component {
     this.setState({ isOpen: true });
   }
 
+  closeForm = () => {
+    this.setState({ isOpen: false })
+  }
+
   generateAddForm = () => {
     if (this.state.isOpen) {
-      return (<ProductForm 
+      return (<ProductForm
                 formType="Add"
                 submitAction={this.props.addProduct}
+                cancelAction={this.closeForm}
               />)
     } else {
       return (
