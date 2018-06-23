@@ -37,7 +37,7 @@ class ProductForm extends Component {
     let title = this.state.fields.title;
     let price = this.state.fields.price;
     let quantity = this.state.fields.quantity;
-    
+
     this.props.submitAction(title, price, quantity, this.props.id);
     this.setState({fields: {title: '', price: '', quantity: ''}});
   }
@@ -50,26 +50,26 @@ class ProductForm extends Component {
           <Field name='title'
                  label='Product Name'
                  value={this.state.fields.title}
-                 onChange={this.onChange} 
+                 onChange={this.onChange}
                  />
 
           <Field name='price'
                  label='Price'
                  value={this.state.fields.price}
-                 onChange={this.onChange} 
+                 onChange={this.onChange}
                  />
 
           <Field name='quantity'
                  label='Quantity'
                  value={this.state.fields.quantity}
-                 onChange={this.onChange} 
+                 onChange={this.onChange}
           />
 
           <div className='actions form-actions'>
             <a className='button'
                onClick={this.submitForm}
             >{this.props.formType}</a>
-            <a className='button'>Cancel</a>
+            <a className='button' onClick={this.props.cancelAction}>Cancel</a>
           </div>
         </form>
       </div>
